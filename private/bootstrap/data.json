@@ -1,5 +1,27 @@
 {
   "tasks": [{
-    "name": "Test Task"
+    "name": "The Shawshank Redemption",
+    "status": "ongoing",
+    "statusMessage": "Fear can hold you prisoner. Hope can set you free."
+  }, {
+    "name": "The Godfather",
+    "status": "ongoing",
+    "statusMessage": "An offer you can't refuse."
+  }, {
+    "name": "The Godfather: Part II",
+    "status": "ongoing",
+    "statusMessage": ""
+  }, {
+    "name": "The Dark Knight",
+    "status": "ongoing",
+    "statusMessage": "The night is darkest before the dawn."
+  }, {
+    "name": "Pulp Fiction",
+    "status": "ongoing",
+    "statusMessage": "You won't know the facts until you've seen the fiction."
+  }, {
+    "name": "Il buono, il brutto, il cattivo.",
+    "status": "ongoing",
+    "statusMessage": "For Three Men The Civil War Wasn't Hell. It Was Practice!"
   }]
 }
