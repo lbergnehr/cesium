@@ -1,7 +1,11 @@
+Router.configure({
+  notFoundTemplate: "notFound"
+});
+
 Router.onAfterAction(function() {
   var data = this.data();
   var title = data && data.title;
-  
+
   document.title = title || "Cesium";
 });
 
