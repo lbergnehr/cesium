@@ -15,7 +15,8 @@ Router.map(function() {
     template: "overview",
     data: function() {
       return {
-        title: "Overview"
+        title: "Overview",
+        tasks: Task.find()
       };
     }
   });

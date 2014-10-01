@@ -1,3 +1,10 @@
 <template name="defaultOverview">
-Default overview
+  <div class="grid">
+    {{#each tasks}}
+    <div class="task-container">
+      <div class="task-title">{{name}}</div>
+      <div class="task-status-messeage">{{statusMessage}}</div>
+    </div>
+    {{/each}}
+  </div>
 </template>
