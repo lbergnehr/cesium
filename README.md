@@ -1,6 +1,6 @@
 # Cesium
 
-Cesium is a continuous integration radiator based on the [Meteor](http://meteor.com) platform.
+Cesium is a continuous integration radiator based on the [Meteor](http://meteor.com) platform. You can see a demo of it at [the demo site](http://cesium.meteor.com).
 
 ## Development
 
