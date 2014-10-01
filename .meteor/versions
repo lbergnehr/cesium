@@ -46,6 +46,7 @@ routepolicy@1.0.1
 session@1.0.2
 spacebars-compiler@1.0.2
 spacebars@1.0.2
+stylus@1.0.4
 templating@1.0.7
 tracker@1.0.2
 ui@1.0.3
