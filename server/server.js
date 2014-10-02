@@ -1,6 +1,7 @@
 // Map collection names to they actual collection instance
 var collectionNameToCollection = {
-  tasks: Task
+  tasks: Task,
+  settings: Setting
 };
 
 Meteor.startup(function() {
