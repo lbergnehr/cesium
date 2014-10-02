@@ -26,7 +26,8 @@ Router.map(function() {
     template: "admin",
     data: function() {
       return {
-        title: "Administration"
+        title: "Administration",
+        settings: Setting.find()
       }
     }
   });

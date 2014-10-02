@@ -1,0 +1,23 @@
+<template name="settings">
+  {{#each settings}}
+  <div class="setting-container">
+    {{> setting}}
+  </div>
+  {{/each}}
+</template>
+
+<template name="setting">
+  <form class="pure-form">
+    <fieldset>
+      <legend>
+        {{name}}
+        <br />
+        <small>{{description}}</small>
+      </legend>
+
+      <input type="text" value="{{value}}" placeholder="{{defaultValue}}">
+
+      <button type="submit " class="pure-button pure-button-primary">&#10003;</button>
+    </fieldset>
+  </form>
+</template>
