@@ -17,7 +17,8 @@
 
       <input type="text" value="{{value}}" placeholder="{{defaultValue}}">
 
-      <button type="submit " class="pure-button pure-button-primary">&#10003;</button>
+      <button type="submit" class="pure-button pure-button-primary js-submit-setting-value" {{submitButtonDisabledAttribute}}>&#10003;</button>
+      <button class="pure-button button-warning {{resetButtonHiddenClass}} js-reset-setting-value">&times;</button>
     </fieldset>
   </form>
 </template>
