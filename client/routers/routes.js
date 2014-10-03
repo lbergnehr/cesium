@@ -6,7 +6,12 @@ Router.onAfterAction(function() {
   var data = this.data();
   var title = data && data.title;
 
-  document.title = title || "Cesium";
+  var mainTitle = Setting.get("radiatorName");
+  if (title) {
+    document.title = title + " — " + mainTitle;
+  } else {
+    document.title = mainTitle;
+  }
 });
 
 Router.map(function() {
@@ -15,7 +20,6 @@ Router.map(function() {
     template: "overview",
     data: function() {
       return {
-        title: "Overview",
         tasks: Task.find().fetch()
       };
     }
