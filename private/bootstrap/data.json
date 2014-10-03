@@ -26,10 +26,12 @@
   }],
 
   "settings": [{
+    "key": "radiatorName",
     "name": "Radiator name",
     "description": "The name of this radiator application.",
     "defaultValue": "Cesium"
   }, {
+    "key": "overviewTemplate",
     "name": "Overview template",
     "description": "The template to use for displaying the overview (main view).",
     "defaultValue": "defaultOverview"
