@@ -1,9 +1,6 @@
-Session.setDefault("maxOverviewColumns", 3);
-Session.setDefault("rowsPerOverviewPage", 2);
-
 Template.defaultOverview.helpers({
   taskRows: function() {
-    var maxColumns = Session.get("maxOverviewColumns");
+    var maxColumns = Setting.get("maxOverviewColumns");
     return _.chain(this.tasks)
       .groupBy(function(item, index) {
         return Math.floor(index / maxColumns);
@@ -13,11 +10,11 @@ Template.defaultOverview.helpers({
   },
 
   maxOverviewColumns: function() {
-    return Session.get("maxOverviewColumns");
+    return Setting.get("maxOverviewColumns");
   },
 
   rowHeightPercentage: function() {
-    return 100 / Session.get("rowsPerOverviewPage");
+    return 100 / Setting.get("rowsPerOverviewPage");
   }
 });
 
