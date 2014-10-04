@@ -33,6 +33,7 @@ Template.task.rendered = function() {
   var numberOfWords = words.length;
   var squarePixels = height * width;
 
+  // This was *not* analytically derived...
   var fontSize = 2 / Math.log(longestWord * numberOfWords * numberOfWords) * Math.pow((squarePixels / 1000), 0.6);
 
   taskDiv.style.fontSize = fontSize + "vw";
