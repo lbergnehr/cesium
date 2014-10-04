@@ -1,4 +1,10 @@
 <template name="overview">
   {{! Include the template configured to be used }}
   {{> UI.dynamic template=overviewTemplate}}
+
+  <footer>
+    <small>
+      Made with {{meteorVersion}}
+    </small>
+  </footer>
 </template>
