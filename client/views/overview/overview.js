@@ -1,5 +1,5 @@
 Template.overview.helpers({
   overviewTemplate: function() {
-    return this.overviewTemplate || "defaultOverview";
+    return Setting.get("overviewTemplate");
   }
 });
