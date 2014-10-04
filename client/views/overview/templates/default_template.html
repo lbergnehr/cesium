@@ -1,19 +1,13 @@
 <template name="defaultOverview">
-  <div class="pure-g tasks">
-    {{#each taskGroup.firstThree}}
-    <div class="pure-u-1-3">
+  {{#each taskRows}}
+  <div class="pure-g tasks" style="height: {{rowHeightPercentage}}%;">
+    {{#each this}}
+    <div class="pure-u-1-{{maxOverviewColumns}}">
       {{> task}}
     </div>
     {{/each}}
   </div>
-
-  <div class="pure-g tasks">
-    {{#each taskGroup.threeMore}}
-    <div class="pure-u-1-3">
-      {{> task}}
-    </div>
-    {{/each}}
-  </div>
+  {{/each}}
 </template>
 
 <template name="task">
