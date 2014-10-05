@@ -1,0 +1,23 @@
+{
+  "settings": [{
+    "key": "radiatorName",
+    "name": "Radiator name",
+    "description": "The name of this radiator application.",
+    "defaultValue": "Cesium"
+  }, {
+    "key": "overviewTemplate",
+    "name": "Overview template",
+    "description": "The template to use for displaying the overview (main view).",
+    "defaultValue": "defaultOverview"
+  }, {
+    "key": "maxOverviewColumns",
+    "name": "Maximum columns in default overview",
+    "description": "The maximum columns of tasks to display in the default overview.",
+    "defaultValue": "3"
+  }, {
+    "key": "rowsPerOverviewPage",
+    "name": "Rows on each overview page",
+    "description": "The amount of rows of tasks that can fit on one page in the default overview.",
+    "defaultValue": "3"
+  }]
+}
