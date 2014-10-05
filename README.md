@@ -18,3 +18,12 @@ In order to get test data into the system, enter the data in `private/bootstrap/
       ]
     }
 
+### Coding style
+In order to get some consistent syntax it's recommended to format JavaScript code with js-beautify or a similar tool. Here's an example command you can use:
+
+    js-beautify -s 2 -m 2 -f file_to_beautify.js
+
+You can put this in your .vimrc to make it easy to format the current file with `<leader>bj`:
+
+    nmap <leader>bj mq:%! js-beautify -f - -s 2<cr>'q
+
