@@ -12,7 +12,7 @@ Meteor.startup(function() {
   // Load the database with initial data (for test?)
   if (process.env.USE_FAKE_DATA) {
     // Load the database with initial data (for test?)
-    loadBootstrapData("bootstrap/faketasks.json");
+    loadBootstrapData("bootstrap/fakedata.json");
   } else {
     Meteor.setInterval(RemotePoll.loadTeamcityData, 10000);
   }
