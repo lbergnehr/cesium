@@ -24,5 +24,10 @@
     "name": "Remote server poll interval",
     "description": "The delay, in seconds, between each poll of the remote teamcity server.",
     "defaultValue": "10"
+  }, {
+    "key": "remoteServerUrl",
+    "name": "Url of Teamcity server.",
+    "description": "Url of Teamcity server. Must have guest account enabled.",
+    "defaultValue": "http://teamcity.jetbrains.com"
   }]
 }

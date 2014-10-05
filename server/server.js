@@ -14,10 +14,7 @@ Meteor.startup(function() {
     // Load the database with initial data (for test?)
     loadBootstrapData("bootstrap/fakedata.json");
   } else {
-    var intervalInSecs = Setting.findOne({
-      key: "remoteServerPollingIntervalSecs"
-    });
-    Meteor.setInterval(RemotePoll.loadTeamcityData, (intervalInSecs * 1000) || 10000);
+    RemotePoll.start()
   }
 });
 
@@ -31,6 +28,7 @@ var loadBootstrapData = function(fileName) {
       if (!collection.find().count()) {
         _(bootstrapData[collectionName]).each(function(instance) {
           if (collection) {
+            console.log("Inserting")
             collection.insert(instance);
           }
         });
