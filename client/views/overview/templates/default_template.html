@@ -1,10 +1,18 @@
 <template name="defaultOverview">
-  <div class="grid">
-    {{#each tasks}}
-    <div class="task-container">
-      <div class="task-title">{{name}}</div>
-      <div class="task-status-messeage">{{status}}</div>
+  {{#each taskRows}}
+  <div class="pure-g tasks" style="height: {{rowHeightPercentage}}%;">
+    {{#each this}}
+    <div class="pure-u-1-{{maxOverviewColumns}}">
+      {{> task}}
     </div>
     {{/each}}
+  </div>
+  {{/each}}
+</template>
+
+<template name="task">
+  <div class="task">
+    <div class="task-title">{{name}}</div>
+    <div class="task-status-messeage">{{status}}</div>
   </div>
 </template>
