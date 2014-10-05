@@ -19,5 +19,10 @@
     "name": "Rows on each overview page",
     "description": "The amount of rows of tasks that can fit on one page in the default overview.",
     "defaultValue": "3"
+  }, {
+    "key": "remoteServerPollingIntervalSecs",
+    "name": "Remote server poll interval",
+    "description": "The delay, in seconds, between each poll of the remote teamcity server.",
+    "defaultValue": "10"
   }]
 }

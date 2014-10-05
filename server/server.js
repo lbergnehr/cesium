@@ -14,7 +14,10 @@ Meteor.startup(function() {
     // Load the database with initial data (for test?)
     loadBootstrapData("bootstrap/fakedata.json");
   } else {
-    Meteor.setInterval(RemotePoll.loadTeamcityData, 10000);
+    var intervalInSecs = Setting.findOne({
+      key: "remoteServerPollingIntervalSecs"
+    });
+    Meteor.setInterval(RemotePoll.loadTeamcityData, (intervalInSecs * 1000) || 10000);
   }
 });
 
