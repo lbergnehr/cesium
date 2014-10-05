@@ -5,13 +5,13 @@ var collectionNameToCollection = {
 };
 
 Meteor.startup(function() {
-    // Load the database with initial data (for test?)
-    if ( process.env.USE_BOOTSTRAP_DATA) {
-      loadBootstrapData("bootstrap/data.json");
-    } else {
-      Meteor.setInterval(RemotePoll.loadTeamcityData, 10000);
-    }
-  });
+  // Load the database with initial data (for test?)
+  if (process.env.USE_BOOTSTRAP_DATA) {
+    loadBootstrapData("bootstrap/data.json");
+  } else {
+    Meteor.setInterval(RemotePoll.loadTeamcityData, 10000);
+  }
+});
 
 var loadBootstrapData = function(fileName) {
   var bootstrapTextData = Assets.getText(fileName);
@@ -30,6 +30,3 @@ var loadBootstrapData = function(fileName) {
     });
   }
 }
-
-
-
