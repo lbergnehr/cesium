@@ -8,7 +8,7 @@ The administration of the site can be done through the `admin` route. For a defa
 ## Development
 
 ### Test Data
-In order to get test data into the system, enter the data in `private/bootstrap/data.json`. The file is a key-value list of collection names and a list of data that should be inserted for that collection, e.g.:
+In order to get test data into the system, set the Meteor.settings key `USE_FAKE_DATA` to something not-falsey and enter the data in `private/bootstrap/fakedata.json`. The file is a key-value list of collection names and a list of data that should be inserted for that collection, e.g.:
 
     {
       "tasks": [
