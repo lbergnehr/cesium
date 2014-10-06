@@ -10,7 +10,7 @@ Meteor.startup(function() {
   loadBootstrapData("bootstrap/settings.json")
 
   // Load the database with initial data (for test?)
-  if (process.env.USE_FAKE_DATA) {
+  if (Meteor.settings["USE_FAKE_DATA"]) {
     // Load the database with initial data (for test?)
     loadBootstrapData("bootstrap/fakedata.json");
   } else {
