@@ -9,32 +9,29 @@ Template.defaultOverview.helpers({
       .value();
   },
 
-  maxOverviewColumns: function() {
-    return Setting.get("maxOverviewColumns");
-  },
-
   rowHeightPercentage: function() {
     return 100 / Setting.get("rowsPerOverviewPage");
   }
 });
 
 Template.task.rendered = function() {
-  var taskDiv = this.find(".task");
-  var height = taskDiv.clientHeight;
-  var width = taskDiv.clientWidth;
+  var taskDiv = this.find(".task div");
 
-  var data = this.data;
-
-  var words = data.name.split(" ");
-  var longestWord = _.chain(words)
-    .pluck("length")
-    .max()
-    .value();
-  var numberOfWords = words.length;
-  var squarePixels = height * width;
-
-  // This was *not* analytically derived...
-  var fontSize = 2 / Math.log(longestWord * numberOfWords * numberOfWords) * Math.pow((squarePixels / 1000), 0.6);
-
-  taskDiv.style.fontSize = fontSize + "vw";
+  $(taskDiv).textfill({
+    maxFontPixels: 500
+  });
 };
+
+var statusMap = {
+  SUCCESS: "task-success",
+  FAILURE: "task-failure"
+};
+Template.task.helpers({
+  columnWidthPercentage: function() {
+    return 100 / Setting.get("maxOverviewColumns");
+  },
+
+  taskStatusClass: function() {
+    return statusMap[this.status];
+  }
+});
