@@ -14,12 +14,18 @@ Template.defaultOverview.helpers({
   }
 });
 
-Template.task.rendered = function() {
-  var taskDiv = this.find(".task div");
+var textFillArgs = {
+  maxFontPixels: 500
+};
+var throttledResize = _.debounce(function() {
+  $(".task > div").textfill(textFillArgs);
+}, 500);
+$(window).resize(throttledResize);
 
-  $(taskDiv).textfill({
-    maxFontPixels: 500
-  });
+Template.task.rendered = function() {
+  var taskDiv = this.find(".task > div");
+
+  $(taskDiv).textfill(textFillArgs);
 };
 
 var statusMap = {
