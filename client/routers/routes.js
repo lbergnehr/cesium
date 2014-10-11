@@ -20,7 +20,9 @@ Router.map(function() {
     template: "overview",
     data: function() {
       return {
-        tasks: Task.find().fetch()
+        tasks: Task.find({}, {
+          limit: 30
+        }).fetch()
       };
     }
   });
