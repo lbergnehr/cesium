@@ -1,4 +1,5 @@
 var Future = Npm.require('fibers/future');
+process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
 
 RemotePoll = {}
 RemotePoll.start = function() {
@@ -67,8 +68,13 @@ var upsertCollection = function(dataTypeName, collection, dataProperty) {
 
   console.log("Fetching " + dataTypeName + " from " + url);
 
-  var result = HTTP.get(url.concat('/', dataTypeName), httpRequestOptions);
-  data = JSON.parse(result.content);
+  var result = null;
+  try {
+    result = HTTP.get(url.concat('/', dataTypeName), httpRequestOptions);
+  } catch (error) {
+    console.log(error);
+  }
+  var data = JSON.parse(result.content);
 
   _(data[dataProperty]).each(function(entity) {
     collection.upsert({

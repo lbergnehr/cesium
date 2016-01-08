@@ -1,7 +1,14 @@
+Template.defaultOverview.onCreated(function() {
+  this.subscribe("tasks");
+  this.subscribe("settings");
+});
+
 Template.defaultOverview.helpers({
   taskRows: function() {
+    var tasks = Task.find().fetch();
+
     var maxColumns = Setting.get("maxOverviewColumns");
-    return _.chain(this.tasks)
+    return _.chain(tasks)
       .groupBy(function(item, index) {
         return Math.floor(index / maxColumns);
       })
@@ -38,6 +45,10 @@ Template.task.helpers({
   },
 
   taskStatusClass: function() {
+    if (this.running) {
+      return "task-running";
+    }
+
     return statusMap[this.status];
   }
 });

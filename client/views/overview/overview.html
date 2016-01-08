@@ -1,6 +1,8 @@
 <template name="overview">
   {{! Include the template configured to be used }}
-  {{> UI.dynamic template=overviewTemplate}}
+  {{#if Template.subscriptionsReady}}
+    {{> UI.dynamic template=overviewTemplate}}
+  {{/if}}
 
   <footer>
     <small>

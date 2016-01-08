@@ -8,14 +8,6 @@ Meteor.startup(function() {
 
   // Load the database with initial settings
   loadBootstrapData("bootstrap/settings.json")
-
-  // Load the database with initial data (for test?)
-  if (Meteor.settings["USE_FAKE_DATA"]) {
-    // Load the database with initial data (for test?)
-    loadBootstrapData("bootstrap/fakedata.json");
-  } else {
-    RemotePoll.start()
-  }
 });
 
 var loadBootstrapData = function(fileName) {

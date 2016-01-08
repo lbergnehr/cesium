@@ -1,15 +1,20 @@
 <template name="defaultOverview">
-  {{#each taskRows}}
-  <div class="task-row" style="height: {{rowHeightPercentage}}%;">
-    {{#each this}} {{> task}} {{/each}}
-  </div>
-  {{/each}}
+  {{#if Template.subscriptionsReady}}
+    {{#each taskRows}}
+    <div class="task-row" style="height: {{rowHeightPercentage}}%;">
+      {{#each this}} {{> task}} {{/each}}
+    </div>
+    {{/each}}
+  {{else}}
+    {{> loading}}
+  {{/if}}
 </template>
 
 <template name="task">
   <div class="task {{taskStatusClass}}" style="width: {{columnWidthPercentage}}%;">
     <div>
       <span class="task-title">{{name}}</span>
+      <span>{{buildType.name}}</span>
     </div>
   </div>
 </template>
