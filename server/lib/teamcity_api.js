@@ -8,7 +8,7 @@ const HttpRequestOptions = {
 const refreshInterval$ = Rx.Observable.create(observer => {
   var handle = Meteor.setInterval(() => {
     observer.onNext();
-  }, 2000);
+  }, 3000);
 
   return () => {
     Meteor.clearInterval(handle);
@@ -31,13 +31,15 @@ TeamCity = class TeamCity {
     // running:any is needed in order to also return builds that are ongoing.
     return refreshInterval$
       .flatMap(_ => {
-        return getApiResultData$(this.serverBaseUrl, this.authMode, `app/rest/builds?locator=running:any&count=${count}`).flatMap(content => content.build);
+        return getApiResultData$(this.serverBaseUrl, this.authMode, `app/rest/builds?locator=running:any&count=${count}`).map(content => content.build);
       })
-      .share();
+      .flatMap(builds => Rx.Observable.fromArray(builds)
+               .flatMap(build => this.getBuildDetail$(build.id).map(details => _(build).extend(details)))
+               .toArray())
   }
 
   getBuildDetail$(buildId) {
-    return getApiResultData$(this.serverBaseUrl, this.authMode, `app/rest/builds/${buildId}`);
+    return getApiResultData$(this.serverBaseUrl, this.authMode, `app/rest/builds/${buildId}`).share();
   }
 }
 
@@ -46,6 +48,7 @@ function getApiResultData$(baseUrl, authMode, relativeAddress) {
 
     return Rx.Observable
       .fromNodeCallback(HTTP.get)(url, HttpRequestOptions)
+      .do(result => console.log(`Queried server on ${url}`))
       .map(result => JSON.parse(result.content));
 }
 

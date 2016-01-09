@@ -1,17 +1,40 @@
-var api = new TeamCity(Setting.get("remoteServerUrl"));
+const Rx = Meteor.npmRequire("rx");
+let build$ = null;
 
 Meteor.publish("tasks", function() {
-  var handle = api.getBuild$(30)
-    .flatMap(build => api.getBuildDetail$(build.id).map(details => _(build).extend(details)))
+  if (!build$) {
+    let api = new TeamCity(Setting.get("remoteServerUrl"));
+    build$ = api.getBuild$(30).share();
+  }
+
+  let handle = build$
+    .startWith([])
+    .pairwise()
+    .map(buildSets => {
+      let lastBuildSet = buildSets[0] || [];
+      let newBuildSet = buildSets[1] || [];
+
+      let added = _(newBuildSet).filter(nb => !_(lastBuildSet).some(lb => lb.id === nb.id));
+      let removed = _(lastBuildSet).filter(lb => !_(newBuildSet).some(nb => nb.id === lb.id));
+      let changed = _(newBuildSet).filter(nb => _(lastBuildSet).some(lb => lb.id === nb.id && !_(lb).isEqual(nb)));
+
+      return {added, removed, changed};
+    })
     .subscribe(result => {
-      console.log(`Added ${result.id}`);
-      this.added("tasks", result.id, result);
-    });
+      //console.log(`${result.added.length} items added: ${JSON.stringify(result.added)}`);
+      result.added.forEach(build => this.added("tasks", build.id, build));
+
+      //console.log(`${result.removed.length} items removed: ${JSON.stringify(result.removed)}`);
+      result.removed.forEach(build => this.removed("tasks", build.id));
+
+      //console.log(`${result.changed.length} items changed: ${JSON.stringify(result.changed)}`);
+      result.changed.forEach(build => this.changed("tasks", build.id, build));
+  });
 
   this.onStop(function() {
     handle.dispose();
   });
-  
+
   this.ready();
 });
 

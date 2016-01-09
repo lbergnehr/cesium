@@ -1,6 +1,16 @@
-Template.setting.created = function() {
+Template.settings.onCreated(function() {
+  this.subscribe("settings");
+});
+
+Template.settings.helpers({
+  settings: function() {
+    return Setting.find();
+  }
+});
+
+Template.setting.onCreated(function() {
   this.reactiveFieldValue = new ReactiveVar(this.data.value);
-};
+});
 
 Template.setting.helpers({
   submitButtonDisabledAttribute: function() {

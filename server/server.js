@@ -1,12 +1,11 @@
 // Map collection names to they actual collection instance
 var collectionNameToCollection = {
-  tasks: Task,
   settings: Setting
 };
 
 Meteor.startup(function() {
-
   // Load the database with initial settings
+  console.log("Bootstrapping data...");
   loadBootstrapData("bootstrap/settings.json")
 });
 
@@ -20,11 +19,11 @@ var loadBootstrapData = function(fileName) {
       if (!collection.find().count()) {
         _(bootstrapData[collectionName]).each(function(instance) {
           if (collection) {
-            console.log("Inserting")
+            console.log(`Inserting into ${collectionName}`)
             collection.insert(instance);
           }
         });
       }
     });
   }
-}
+};

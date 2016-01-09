@@ -1,9 +1,13 @@
 <template name="settings">
-  {{#each settings}}
-  <div class="setting-container">
-    {{> setting}}
-  </div>
-  {{/each}}
+  {{#if Template.subscriptionsReady}}
+    {{#each settings}}
+    <div class="setting-container">
+      {{> setting}}
+    </div>
+    {{/each}}
+  {{else}}
+    {{> loading}}
+  {{/if}}
 </template>
 
 <template name="setting">

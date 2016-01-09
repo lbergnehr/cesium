@@ -5,7 +5,7 @@ Template.defaultOverview.onCreated(function() {
 
 Template.defaultOverview.helpers({
   taskRows: function() {
-    var tasks = Task.find().fetch();
+    var tasks = Task.find({}, {sort: {id: -1}}).fetch();
 
     var maxColumns = Setting.get("maxOverviewColumns");
     return _.chain(tasks)
@@ -45,7 +45,7 @@ Template.task.helpers({
   },
 
   taskStatusClass: function() {
-    if (this.running) {
+    if (this.state === "running") {
       return "task-running";
     }
 
