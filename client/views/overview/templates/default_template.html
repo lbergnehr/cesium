@@ -11,10 +11,14 @@
 </template>
 
 <template name="task">
-  <div class="task {{taskStatusClass}}" style="width: {{columnWidthPercentage}}%;">
+  <div class="task" style="width: {{columnWidthPercentage}}%;">
     <div>
-      <span class="task-title">{{name}}</span>
-      <span>{{buildType.name}}</span>
+      <span class="task-title {{taskStatusClass}}">{{this.[0]}}</span>
+      <ul>
+        {{#each builds}}
+        <li class="{{buildStatusClass}}">{{buildType.name}}</li>
+        {{/each}}
+      </ul>
     </div>
   </div>
 </template>

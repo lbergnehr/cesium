@@ -5,10 +5,11 @@ Template.defaultOverview.onCreated(function() {
 
 Template.defaultOverview.helpers({
   taskRows: function() {
-    var tasks = Task.find({}, {sort: {id: -1}}).fetch();
+    let tasks = Task.find({}, {sort: {id: -1}}).fetch();
+    let taskGroups = _(tasks).groupBy(t => t.buildType.projectName);
 
     var maxColumns = Setting.get("maxOverviewColumns");
-    return _.chain(tasks)
+    return _.chain(_(taskGroups).pairs())
       .groupBy(function(item, index) {
         return Math.floor(index / maxColumns);
       })
@@ -39,16 +40,41 @@ var statusMap = {
   SUCCESS: "task-success",
   FAILURE: "task-failure"
 };
+
 Template.task.helpers({
   columnWidthPercentage: function() {
     return 100 / Setting.get("maxOverviewColumns");
   },
 
   taskStatusClass: function() {
+    let tasks = this[1];
+
+    let isRunning = _(tasks).some(x => x.state === "running");
+    if (isRunning) {
+      return "task-running";
+    }
+
+    let isFailed = _(tasks).some(x => x.status === "FAILURE");
+    if (isFailed) {
+      return "task-failure";
+    }
+
+    return "task-success";
+  },
+
+  builds: function() {
+    return this[1];
+  },
+
+  buildStatusClass: function() {
     if (this.state === "running") {
       return "task-running";
     }
 
-    return statusMap[this.status];
+    if (this.status === "FAILURE") {
+      return "task-failure";
+    }
+
+    return "task-success";
   }
 });
