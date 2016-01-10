@@ -1,3 +1,5 @@
+process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
+
 // Map collection names to they actual collection instance
 var collectionNameToCollection = {
   settings: Setting
