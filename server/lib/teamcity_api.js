@@ -48,6 +48,5 @@ function getApiResultData$(baseUrl, authMode, relativeAddress) {
 
   return Rx.Observable
     .fromNodeCallback(HTTP.get)(url, HttpRequestOptions)
-    .do(result => console.log(`Queried server on ${url}`))
     .map(result => JSON.parse(result.content));
 }

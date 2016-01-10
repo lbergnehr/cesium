@@ -7,7 +7,7 @@ Meteor.publish("tasks", function() {
     let pollInterval = Setting.get("remoteServerPollingIntervalSecs");
 
     let api = new TeamCity(tcUrl);
-    build$ = api.getBuild$(numberOfBuilds, pollInterval * 1000).share();
+    build$ = api.getBuild$(numberOfBuilds, pollInterval * 1000).shareReplay(1);
   }
 
   let handle = build$
@@ -24,14 +24,20 @@ Meteor.publish("tasks", function() {
       return {added, removed, changed};
     })
     .subscribe(result => {
-      //console.log(`${result.added.length} items added: ${JSON.stringify(result.added)}`);
-      result.added.forEach(build => this.added("tasks", build.id, build));
+      if (result.added.length > 0) {
+        console.log(`${result.added.length} new tasks added`);
+        result.added.forEach(build => this.added("tasks", build.id, build));
+      }
 
-      //console.log(`${result.removed.length} items removed: ${JSON.stringify(result.removed)}`);
-      result.removed.forEach(build => this.removed("tasks", build.id));
+      if (result.removed.length > 0) {
+        console.log(`${result.removed.length} tasks removed`);
+        result.removed.forEach(build => this.removed("tasks", build.id));
+      }
 
-      //console.log(`${result.changed.length} items changed: ${JSON.stringify(result.changed)}`);
-      result.changed.forEach(build => this.changed("tasks", build.id, build));
+      if (result.changed.length > 0) {
+        console.log(`${result.changed.length} tasks changed`);
+        result.changed.forEach(build => this.changed("tasks", build.id, build));
+      }
   });
 
   this.onStop(function() {
