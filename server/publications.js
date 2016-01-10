@@ -1,10 +1,13 @@
-const Rx = Meteor.npmRequire("rx");
 let build$ = null;
 
 Meteor.publish("tasks", function() {
   if (!build$) {
-    let api = new TeamCity(Setting.get("remoteServerUrl"));
-    build$ = api.getBuild$(30).share();
+    let tcUrl = Setting.get("remoteServerUrl");
+    let numberOfBuilds = 30;
+    let pollInterval = Setting.get("remoteServerPollingIntervalSecs");
+
+    let api = new TeamCity(tcUrl);
+    build$ = api.getBuild$(numberOfBuilds, pollInterval * 1000).share();
   }
 
   let handle = build$

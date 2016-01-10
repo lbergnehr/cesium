@@ -13,21 +13,26 @@
     "key": "maxOverviewColumns",
     "name": "Maximum columns in default overview",
     "description": "The maximum columns of tasks to display in the default overview.",
-    "defaultValue": "3"
+    "defaultValue": 3
   }, {
     "key": "rowsPerOverviewPage",
     "name": "Rows on each overview page",
     "description": "The amount of rows of tasks that can fit on one page in the default overview.",
-    "defaultValue": "3"
+    "defaultValue": 3
   }, {
     "key": "remoteServerPollingIntervalSecs",
     "name": "Remote server poll interval",
     "description": "The delay, in seconds, between each poll of the remote teamcity server.",
-    "defaultValue": "10"
+    "defaultValue": 10
   }, {
     "key": "remoteServerUrl",
     "name": "Url of Teamcity server.",
     "description": "Url of Teamcity server. Must have guest account enabled.",
     "defaultValue": "http://teamcity.jetbrains.com"
+  }, {
+    "key": "numberOfBuilds",
+    "name": "Number of builds",
+    "description": "Maximum number of builds to fetch from the TeamCity server",
+    "defaultValue": 30
   }]
 }
