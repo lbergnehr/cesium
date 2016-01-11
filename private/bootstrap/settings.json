@@ -34,5 +34,6 @@
     "name": "Number of builds",
     "description": "Maximum number of builds to fetch from the TeamCity server",
     "defaultValue": 30
+
   }]
 }

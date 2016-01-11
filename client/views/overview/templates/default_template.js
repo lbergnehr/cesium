@@ -5,7 +5,11 @@ Template.defaultOverview.onCreated(function() {
 
 Template.defaultOverview.helpers({
   taskRows: function() {
-    let tasks = Task.find({}, {sort: {id: -1}}).fetch();
+    let tasks = Task.find({}, {
+      sort: {
+        id: -1
+      }
+    }).fetch();
     let taskGroups = _(tasks).groupBy(t => t.buildType.projectName);
 
     var maxColumns = Setting.get("maxOverviewColumns");

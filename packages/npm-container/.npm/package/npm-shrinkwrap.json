@@ -1,5 +1,13 @@
 {
   "dependencies": {
+    "progressbar.js": {
+      "version": "0.9.0",
+      "dependencies": {
+        "shifty": {
+          "version": "1.5.0"
+        }
+      }
+    },
     "rx": {
       "version": "4.0.7"
     }

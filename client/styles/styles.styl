@@ -9,6 +9,9 @@ html, body
 	color #586e75
 	background-color #002b36
 
+ul
+	list-style none
+
 .hidden
 	visibility hidden
 
@@ -29,15 +32,12 @@ footer
 .task
 	font-size 12px
 	vertical-align top
-	font-family "Arial"
+	font-family "Helvetica"
 	display inline-block
 	height 100%
-	div
-		display relative
-		margin-left auto
-		margin-right auto
-		height 80%
-		width 80%
+
+.task-title
+	height 50%
 
 .task-success
 	color #859900
@@ -47,6 +47,18 @@ footer
 
 .task-running
 	color #268bd2
+
+.build
+	font-size 1vw
+	position relative
+
+.progress-bar
+	display inline-block
+	width 5%
+.build-name
+	display inline-block
+	width 70%
+	vertical-align top
 
 // ========= Admin ===========
 
