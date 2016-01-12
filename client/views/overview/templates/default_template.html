@@ -13,7 +13,7 @@
 <template name="task">
   <div class="task" style="width: {{columnWidthPercentage}}%;">
     <div class="task-title">
-      <span class="task-title {{taskStatusClass}}">{{this.[0]}}</span>
+      <span class="{{taskStatusClass}}">{{this.[0]}}</span>
     </div>
 
     <div class="builds">
@@ -28,10 +28,19 @@
 
 <template name="build">
   <div class="build">
-    <div class="progress-bar"></div>
-    <div class="build-name">{{buildType.name}}</div>
+    {{#if buildIsRunning}}
+      {{> buildInProgress}}
+    {{else}}
+      {{> finishedBuild}}
+    {{/if}}
   </div>
-  <!--
-    <div class="progress-bar"></div>
-  -->
+</template>
+
+<template name="finishedBuild">
+  <div class="build-name">{{buildType.name}} <span class="build-details">({{buildDuration}})</span></div>
+</template>
+
+<template name="buildInProgress">
+  <div class="build-name">{{buildType.name}}</div>
+  <div class="progress-bar"></div>
 </template>
